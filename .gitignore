@@ -1,0 +1,8 @@
+# Ignore all pyc files
+*pyc
+
+# Ignore migrations folder
+migrations/
+
+# Ignore __pycache__ folder
+__pycache__/
