@@ -48,8 +48,6 @@ class BlogComment(models.Model):
 class FeaturedPost(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     
-
-
     def __str__(self):
         return str(self.post.sno) + self.post.title
 

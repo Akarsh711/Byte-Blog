@@ -15,4 +15,5 @@ urlpatterns = [
 	path('search/', views.search, name='search'),
 	path('search_tag', views.search_tag, name='search-tag'),
 	path('search_category', views.search_category, name='search-category'),
+	
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
