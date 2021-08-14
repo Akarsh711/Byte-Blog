@@ -1,0 +1,324 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block head%}
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" type ="text/javascript"></script>
+{% endblock %}
+
+{%block script%}
+<script>
+    window.onload = function(){
+        tinymce.init({
+            selector: '#id_content', // changing that id into model's text area's id .
+            height : 450,
+            plugins: [
+            'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+            'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+            'table emoticons template paste help'
+            ],
+            toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | ' +
+            'bullist numlist outdent indent | link image | print preview media fullpage | ' +
+            'forecolor backcolor emoticons | help',
+            menu: {
+            favs: {title: 'My Favorites', items: 'code visualaid | searchreplace | spellchecker | emoticons'}
+            },
+            menubar: 'favs file edit view insert format tools table help',
+            content_css: 'css/content.css'
+        });
+        datetime = new Date().toJSON();
+        date = datetime.slice(0,10);
+        time = datetime.slice(11,19);
+        dt = date + ' ' + time;
+        document.getElementById('datetime').value = dt;
+        
+
+
+    }
+
+    // $('#add-tag').on('click', function(){
+    //     alert("chala")
+    // })
+    document.getElementById('add-tag').addEventListener('click', function(event){
+        event.preventDefault();
+
+        document.getElementById('input-li').style.display = "block";
+        document.getElementById('txt').focus();
+        
+    });
+    
+    input = document.getElementById("txt");
+    input.addEventListener('keyup', function(event){
+        // Number 13 is the "Enter" key on the keyboard
+        console.log()
+        if(event.keyCode == 13){
+            showTag(input.value);
+            
+            li = document.createElement('li');
+            a = document.createElement('a');
+            a.href = "#";
+            a.innerHTML = input.value;
+            li.appendChild(a);
+            document.getElementById('ul-tag').appendChild(li);
+            input.value = "";
+            document.getElementById('input-li').style.display = "none";
+
+
+        }
+        // Number 188 is the "," comma key on the keyboard
+        if(event.keyCode == 188){
+            showTagComma(input.value);
+            
+            li = document.createElement('li');
+            a = document.createElement('a');
+            a.href = "#";
+            a.innerHTML = input.value;
+            li.appendChild(a);
+            document.getElementById('ul-tag').appendChild(li);
+            input.value = "";
+
+        }
+    });
+
+    function showTag(val){
+        textarea = document.getElementById("tag-area")
+        if(textarea.value == "" || textarea.value == null){
+            textarea.value = val;
+        }
+        else{
+        textarea.value += ','+ val;
+        }
+    }
+
+    function showTagComma(val){
+        document.getElementById("tag-area").value  +=val;
+    }
+
+    document.getElementById("submit-btn").addEventListener('click', function(){
+        document.getElementById('form').submit();
+
+        // var title = document.getElementById('title');
+        // var bdescription = document.getElementById('bdescription');
+        // var description = document.getElementById('description');
+        // var image = document.getElementById('image');
+        // var author = document.getElementById('author');
+        // var date = document.getElementById('date');
+        // var time = document.getElementById('time');
+
+
+    });
+</script>
+{% endblock %}
+
+
+{%block body%}
+
+
+
+    <!-- Banner Starts Here -->
+    <form id="form" method="POST" action="/add-post" enctype="multipart/form-data">
+        {%csrf_token%}
+    <div class="heading-page header-text">
+        <section class="custom-page-heading">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-content">
+                            <!-- <h4>Post Details</h4> -->
+                            <!-- <input class="special-input"> -->
+                            <textarea name ="title" class="special-input" placeholder="Enter Title Here"></textarea>
+                            <!-- <h2>{{post.title}}</h2> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Banner Ends Here -->
+
+   <!--  <section class="call-to-action">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="main-content">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <span>Stand Blog HTML5 Template</span>
+                                <h4>Creative HTML Template For Bloggers!</h4>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="main-button">
+                                    <a href="https://templatemo.com/tm-551-stand-blog" rel="nofollow"
+                                        target="_parent">Download Now!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    
+    <section class="blog-posts grid-system">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="all-blog-posts">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="blog-post">
+                                   <!--  <div class="blog-thumb">
+                                        <img alt="" height=""src="/yela/{{post.thumbnail}}" />
+                                    </div> -->
+                                    <div class="down-content">
+                                       <!--  <span>Lifestyle</span>
+                                        <a href="post-details.html">
+                                            <h4>{{post.title}}</h4>
+                                        </a>
+                                        <ul class="post-info">
+                                            <li><a href="#">{{post.author}}</a></li>
+                                            <li><a href="#">{{post.timestamp}}</a></li>
+                                        </ul> -->
+                                         
+
+
+                                        <!-- <form> -->
+                                            <label for="file-upload" class="custom-file-upload">
+                                                <!-- <i class="fa fa-cloud-upload"></i> Custom Upload -->
+                                                <!-- <img src="/yela/{{post.thumbnail}}"> -->
+                                                 <div class="blog-thumb">
+                                                    <img alt="" height=""src="{% static 'assets/images/default2.jpg'%}" alt="boi"/>
+                                                </div>
+                                            </label>
+                                            <input name="thumbnail" type="file" id="file-upload">
+
+                                            <textarea name="bdescription" id="ta-bdescription" placeholder="Add brief description about your post"></textarea>
+                                            <textarea name="description" id="id_content" placeholder="Enter the main Descripition here..."></textarea>
+                                            <input type="hidden"  name="datetime" id="datetime">
+                                            <!-- <input type="text" name="author" id="author" value="{{request.user}}"> -->
+                                        <!-- </form> -->
+    
+                                        <!-- <p class="content-description"> {{post.content|safe}} </p> -->
+                                        <!-- <div class="post-options">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <ul class="post-tags">
+                                                        <li><i class="fa fa-tags"></i></li>
+                                                        <li><a href="#">Best Templates</a>,</li>
+                                                        <li><a href="#">TemplateMo</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-6">
+                                                    <ul class="post-share">
+                                                        <li><i class="fa fa-share-alt"></i></li>
+                                                        <li><a href="#">Facebook</a>,</li>
+                                                        <li><a href="#"> Twitter</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="sidebar">
+                        <div class="row">
+                            <div class="col-lg-12">
+                            <!--     <div class="sidebar-item search">
+                                    <form action="#" id="search_form" method="GET" name="gs">
+                                        <input autocomplete="on" class="searchText" name="q"
+                                            placeholder="type to search..." type="text" />
+                                    </form>
+                                </div>
+
+                                     <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="{%url 'contact'%}">Welcome:{{user.username}}</a>
+                                <input autocomplete="on" class="searchText dropdown-toggle" data-toggle="dropdown"name="q"
+                                            placeholder="type to search..." type="text" />
+                                <ul class="dropdown-menu">
+                                   <li><a class="nav-link" href="{%url 'logout'%}">Logout</a></li>
+                
+                                </ul>
+                            </div> -->
+
+
+                            </div>
+                            <!-- <div class="col-lg-12">
+                                <div class="sidebar-item categories">
+                                    <div class="sidebar-heading">
+                                        <h2>Categories</h2>
+                                    </div>
+                                    <div class="content">
+                                        <ul>
+                                            <li><a href="#">- Nature Lifestyle</a></li>
+                                            <li><a href="#">- Awesome Layouts</a></li>
+                                            <li><a href="#">- Creative Ideas</a></li>
+                                            <li><a href="#">- Responsive Templates</a></li>
+                                            <li><a href="#">- HTML5 / CSS3 Templates</a></li>
+                                            <li><a href="#">- Creative &amp; Unique</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="col-lg-12">
+                                <div class="sidebar-item tags">
+                                    <div class="sidebar-heading">
+                                        <h2>Add Tags</h2>
+                                    </div>
+
+                                    <div class="content">
+                                        <ul id="ul-tag">
+                                            {% for tag in tags %}
+                                            <li><a href="{% url 'search-tag'%}?tag={{tag.tag}}">{{tag.tag}}</a></li>
+                                            {% endfor %}
+
+                                            <!-- <li><a href="#"><input></a></li> -->
+
+                                            <!-- to make think like that you need to distinguish
+                                            with "," and "\n"
+                                            -->
+                                            <li id="input-li">
+                                                <a href="#" id="input-a">
+                                                    <input id="txt" style="border:none" type="text" onkeypress="this.style.width = ((this.value.length + 1) * 8) + 'px';">
+                                                </a>
+                                            </li>
+
+                                            <!-- JUST FOR TEST IT IS SHOWING -->
+                                            <!-- <textarea id="tag-area" name=tags></textarea> -->
+
+                                            <a id="add-tag"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         
+    </section>
+   <section class="blog-posts grid-system">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    
+                   <div class="col-lg-12">
+                        <fieldset>
+                            <button class="main-button" id="submit-btn">
+                                Submit</button>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </form>
+
+{%endblock%}

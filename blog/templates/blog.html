@@ -52,7 +52,7 @@
                     <div class="main-content">
                         <div class="row">
                             <div class="col-lg-8">
-                                <span>Byte Blog</span>
+                                <span class="span">Byte Blog</span>
                                 <h4>Blog to illuminate you </h4>
                             </div>
                             <div class="col-lg-4">
@@ -80,10 +80,10 @@
                             <div class="col-lg-6">
                                 <div class="blog-post">
                                     <div class="blog-thumb">
-                                        <img alt="" src="{% static 'assets/images/blog-thumb-05.jpg' %}" />
+                                        <img alt="" src="/yela/{{post.thumbnail}}" />
                                     </div>
                                     <div class="down-content">
-                                        <span>{{post.category}}</span>
+                                        <span class="span">{{post.category}}</span>
                                         <a href="{% url 'post' post.sno%}">
                                             <h4>{{post.title}}</h4>
                                         </a>

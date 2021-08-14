@@ -62,7 +62,16 @@ h1,h2,h3,h4,h5,h6 {
 	background-image: url(../images/heading-bg.jpg);
 }
 
-.page-heading .text-content h4 {
+.custom-page-heading {
+	margin: 0px 10px;
+	padding: 0px 0px;
+	text-align: left;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	/*background-image: url(../images/heading-bg.jpg);*/
+}
+.custom-page-heading .page-heading .text-content h4 {
 	color: #f48840;
 	font-size: 18px;
 	text-transform: uppercase;
@@ -71,7 +80,7 @@ h1,h2,h3,h4,h5,h6 {
 	margin-bottom: 15px;
 }
 
-.page-heading .text-content h2 {
+.custom-page-heading .page-heading .text-content h2 {
 	color: #fff;
 	font-size: 36px;
 	font-weight: 700;
@@ -1119,3 +1128,13 @@ footer p a:hover {
 		
 	}
 }
+
+/*------------------------------ TESTING --------------------------------*/
+    .special-input{
+    color: blue;
+    /* border-block: none; */
+    border-block-end: none;
+    border: none;
+    font-size: xxx-large;
+    font-weight: bold;
+    text-transform: uppercase;}

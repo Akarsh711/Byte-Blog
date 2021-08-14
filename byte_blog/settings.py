@@ -139,4 +139,7 @@ EMAIL_HOST_PASSWORD = 'ztupoklvzybovgtd'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
+# AUTH_USER_MODEL = "blog.UserManage" 
+
+
 django_heroku.settings(locals())

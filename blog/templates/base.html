@@ -20,6 +20,7 @@
     <link href="{% static 'assets/css/fontawesome.css' %}" rel="stylesheet" />
     <link href="{% static 'assets/css/templatemo-stand-blog.css' %}" rel="stylesheet" />
     <link href="{% static 'assets/css/owl.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/vs.min.css">
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha512-CEiA+78TpP9KAIPzqBvxUv8hy41jyI3f2uHi7DGp/Y/Ka973qgSdybNegWFciqh6GrN2UePx2KkflnQUbUhNIA==" crossorigin="anonymous"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-infinitescroll/4.0.1/infinite-scroll.pkgd.js" integrity="sha512-CfFrR8W+mw2E3c3McWMxLRtDKf6jy04tlvFJfmW6/EAXejfqsFQ9xAnVndYRpPugc/86T6XO3bL79V4OJ2GiQg==" crossorigin="anonymous"></script>
@@ -33,6 +34,7 @@ TemplateMo 551 Stand Blog
 https://templatemo.com/tm-551-stand-blog
 
 -->
+{% block head %}{% endblock %}
 </head>
 
 <body>
@@ -54,13 +56,13 @@ https://templatemo.com/tm-551-stand-blog
                 </a>
                 <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
                     class="navbar-toggler" data-target="#navbarResponsive" data-toggle="collapse" type="button">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon span"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
                             <a class="nav-link" href="{%url 'home'%}">Home
-                                <span class="sr-only">(current)</span>
+                                <span class="sr-only span">(current)</span>
                             </a>
                         </li>
                         <!-- <li class="nav-item">
@@ -75,6 +77,29 @@ https://templatemo.com/tm-551-stand-blog
                         <li class="nav-item">
                             <a class="nav-link" href="{%url 'contact'%}">Contact Us</a>
                         </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'create-post'%}">+add new</a>
+                        </li>
+                         <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="{%url 'contact'%}">Welcome:{{user.username}}</a>
+                                
+                                <ul class="dropdown-menu">
+                                   <li><a class="nav-link" href="{%url 'logout'%}">Logout</a></li>
+                
+                                </ul>
+                            </div>
+                        </li>
+                        {% else %}
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'login'%}">Login</a>
+                        </li>
+                        {%endif%}
+                        
+                           
+
                     </ul>
                 </div>
             </div>
@@ -120,7 +145,8 @@ https://templatemo.com/tm-551-stand-blog
     <script src="{% static 'assets/js/slick.js' %}"></script>
     <script src="{% static 'assets/js/isotope.js' %}"></script>
     <script src="{% static 'assets/js/accordions.js' %}"></script>
-    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
     <script language="text/Javascript">
         cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
         function clearField(t) {                   //declaring the array outside of the
@@ -129,8 +155,10 @@ https://templatemo.com/tm-551-stand-blog
                 t.value = '';         // with more chance of typos
                 t.style.color = '#fff';
             }
-        }
+        } 
+        
     </script>
+    {% block script %} {% endblock %}
 </body>
 
 </html>

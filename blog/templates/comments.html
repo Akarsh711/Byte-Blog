@@ -90,7 +90,7 @@
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <fieldset>
-                                                        <textarea id="message" name="message"
+                                                        <textarea class="textarea" id="message" name="message"
                                                             placeholder="Type your comment" required=""
                                                             rows="6"></textarea>
                                                     </fieldset>
@@ -110,8 +110,13 @@
                         </div>
     <script>
        $('#comment').on('submit', comment);
+
         function comment(e){
             e.preventDefault();
+
+            btn = document.getElementById("form-submit");
+            btn.disabled=true;
+            btn.innerText = "Submmiting...";
             $.ajax({
                 'dataType':'json', 
                 'method':'POST',
@@ -124,7 +129,9 @@
                     "message":$('#message').val(),
                 },
                 success : function(response){
-                $("#response-ajax").html(response['html'])
+                document.getElementById("form-submit").innerText = "Submit";
+                btn.disabled=false;
+                $("#response-ajax").html(response['html']);
               }
 
             });

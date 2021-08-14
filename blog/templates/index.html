@@ -10,7 +10,7 @@
                     <div class="item-content">
                         <div class="main-content">
                             <div class="meta-category">
-                                <span>Fashion</span>
+                                <span class="span">Fashion</span>
                             </div>
                             <a href="post-details.html">
                                 <h4>Morbi dapibus condimentum</h4>
@@ -28,7 +28,7 @@
                     <div class="item-content">
                         <div class="main-content">
                             <div class="meta-category">
-                                <span>Nature</span>
+                                <span class="span">Nature</span>
                             </div>
                             <a href="post-details.html">
                                 <h4>Donec porttitor augue at velit</h4>
@@ -47,7 +47,7 @@
                     <div class="item-content">
                         <div class="main-content">
                             <div class="meta-category">
-                                <span>Lifestyle</span>
+                                <span class="span">Lifestyle</span>
                             </div>
                             <a href="post-details.html">
                                 <h4>Best HTML Templates on TemplateMo</h4>
@@ -65,7 +65,7 @@
                     <div class="item-content">
                         <div class="main-content">
                             <div class="meta-category">
-                                <span>Fashion</span>
+                                <span class="span">Fashion</span>
                             </div>
                             <a href="post-details.html">
                                 <h4>Responsive and Mobile Ready Layouts</h4>
@@ -83,7 +83,7 @@
                     <div class="item-content">
                         <div class="main-content">
                             <div class="meta-category">
-                                <span>Nature</span>
+                                <span class="span">Nature</span>
                             </div>
                             <a href="post-details.html">
                                 <h4>Cras congue sed augue id ullamcorper</h4>
@@ -101,7 +101,7 @@
                     <div class="item-content">
                         <div class="main-content">
                             <div class="meta-category">
-                                <span>Lifestyle</span>
+                                <span class="span">Lifestyle</span>
                             </div>
                             <a href="post-details.html">
                                 <h4>Suspendisse nec aliquet ligula</h4>
@@ -125,7 +125,7 @@
                     <div class="main-content">
                         <div class="row">
                             <div class="col-lg-8">
-                                <span>Stand Blog HTML5 Template</span>
+                                <span class="span">Stand Blog HTML5 Template</span>
                                 <h4>Creative HTML Template For Bloggers!</h4>
                             </div>
                             <div class="col-lg-4">
@@ -152,7 +152,7 @@
                                         <img alt="" src="{% static 'assets/images/blog-post-01.jpg' %}" />
                                     </div>
                                     <div class="down-content">
-                                        <span>Lifestyle</span>
+                                        <span class="span">Lifestyle</span>
                                         <a href="post-details.html">
                                             <h4>Best Template Website for HTML CSS</h4>
                                         </a>
@@ -192,10 +192,10 @@
                             <div class="col-lg-12 infinite-container">
                                 <div class="blog-post">
                                     <div class="blog-thumb">
-                                        <img alt="" src="{% static 'assets/images/blog-post-02.jpg' %}" />
+                                        <img alt="" src="/yela/{{post.thumbnail}}" />
                                     </div>
                                     <div class="down-content">
-                                        <span>Healthy</span>
+                                        <span class="span">Healthy</span>
                                         <a href="{%url 'post' post.sno%}">
                                             <h4>{{post.title}}</h4>
                                         </a>
@@ -258,7 +258,7 @@
                                             {% for post in post_list %}
                                             <li><a href="post-details.html">
                                                     <h5>{{post.title}}</h5>
-                                                    <span>{{post.timestamp}}</span>
+                                                    <span class="span">{{post.timestamp}}</span>
                                                 </a>
                                             </li>
                                             {% endfor %}
