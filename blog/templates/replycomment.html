@@ -28,8 +28,8 @@ e{%load static%}
                                                     <form id="{{comment.sno}}" class="reply-form" action="/reply" method="POST">
                                                         {%csrf_token%}
                                                         <input name="reply" id="reply{{comment.sno}}"class="class_reply" placeholder="type your reply here">
-                                                        <input name="blogid" id="blog_id" value="{{post.sno}}">
-                                                        <input name="c_id" value="{{comment.sno}}">
+                                                        <input name="blogid" type="hidden" id="blog_id" value="{{post.sno}}">
+                                                        <input name="c_id" type="hidden" value="{{comment.sno}}">
                                                         <!-- <button onclick="reply()">submit</button> -->
                                                         <button>submit</button>
                                                     </form>
@@ -47,8 +47,8 @@ e{%load static%}
                                                               </div>
 
                                                               <div class="right-content">
-                                                                <h4>{{k}}<span> May 20, 2020 </span></h4>
-                                                                <p>this is test reply for checking the replies designs</p>
+                                                                <h4>{{k.message}}<span>{{k.timestamp}} </span></h4>
+                                                                <p>{{k.user.username}}</p>
                                                               </div>
                                                           </li>
                                                         {% endfor %}
